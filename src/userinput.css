@@ -12,3 +12,14 @@ input {
 h1 {
   text-align: center;
 }
+
+ul,
+li {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+li {
+  border: solid 2px;
+}
