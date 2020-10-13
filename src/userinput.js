@@ -6,13 +6,21 @@ class UserInput {
   clearGameHistory() {
     localStorage.clear();
   }
+
+  getLogArr() {
+    return JSON.parse(window.localStorage.getItem("logArr"));
+  }
+  setLogArr(newLogArr) {
+    window.localStorage.setItem("logArr", JSON.stringify(newLogArr));
+  }
+
   makeList() {
-    if (!window.localStorage.getItem("logArr")) {
-      window.localStorage.setItem("logArr", JSON.stringify([]));
+    if (!this.getLogArr()) {
+      this.setLogArr([]);
     }
     const list = document.createElement("ul");
-    const logArr = JSON.parse(window.localStorage.getItem("logArr"));
-    logArr
+
+    this.getLogArr()
       .sort((playerOne, playerTwo) => {
         return playerOne.score > playerTwo.score ? -1 : 1;
       })
@@ -23,7 +31,7 @@ class UserInput {
         } \n score : ${player.score}`;
         list.appendChild(listElem);
       });
-    document.querySelector("body").appendChild(list);
+    document.querySelector(".container").appendChild(list);
   }
 
   listenToInput() {
@@ -33,17 +41,27 @@ class UserInput {
       (e) => {
         if (e.key === "Enter") {
           const name = input.value;
-          const logArr = JSON.parse(window.localStorage.getItem("logArr"));
+          this.player = name;
+          const logArr = this.getLogArr();
           logArr.push({ name: name, score: 4 });
-          window.localStorage.setItem("logArr", JSON.stringify(logArr));
+          this.setLogArr(logArr);
         }
       },
       false
     );
   }
+
+  validateName() {}
+
+  updatePlayerScore(score) {
+    const logArr = this.getLogArr();
+    const index = logArr.indexOf({ name: this.name, score: 0 });
+    logArr[index] = { ...logArr[index], score };
+    this.setLogArr(logArr);
+  }
 }
 
-new UserInput();
+const userInput = new UserInput();
 
 // muhammad adding audio:
 // window.addEventListener("load", (event) => {
