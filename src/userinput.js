@@ -1,8 +1,2 @@
-window.localStorage.setItem("nizar", 300);
-
-class Player {
-  constructor(name) {
-    this.name = name;
-    this.score = 0;
-  }
-}
+const input = document.querySelector("input");
+input.addEventListener("keypress", (e) => {});
