@@ -45,18 +45,29 @@ class UserInput {
   listenToInput() {
     const input = document.querySelector("input");
     input.addEventListener(
-      "change",
+      "keyup",
       (e) => {
-        console.log(e.target.value);
         const msg = this.validateName(e.target.value);
-        console.log(msg);
-        if (msg === "good") {
+        const alert = document.querySelector(".alert");
+        if (msg === "no name") {
+          input.classList.remove("danger");
+          input.classList.remove("good");
+          alert.classList.add("disaper");
+          return;
+        } else if (msg === "good") {
           input.classList.remove("danger");
           input.classList.add("good");
-        } else {
+          alert.innerHTML = "Press enter to play!";
+        } else if (msg == "name exist") {
           input.classList.remove("good");
           input.classList.add("danger");
+          alert.innerHTML = "Name exists !";
+        } else if (msg == "short name") {
+          input.classList.remove("good");
+          input.classList.add("danger");
+          alert.innerHTML = "Very short name";
         }
+        alert.classList.remove("disaper");
       },
       false
     );
@@ -64,13 +75,16 @@ class UserInput {
       "keypress",
       (e) => {
         if (e.key === "Enter") {
-          const name = input.value;
-          this.player = name;
-          const logArr = this.getLogArr();
-          logArr.push({ name: name, score: 4 });
-          this.setLogArr(logArr);
-          window.location.href = "../index.html";
-          input.value = "";
+          if (this.validateName(e.target.value) == "good") {
+            const name = input.value;
+            this.player = name;
+            const logArr = this.getLogArr();
+            logArr.push({ name: name, score: 4 });
+            this.setLogArr(logArr);
+            window.location.href = "../index.html";
+            input.value = "";
+          } else {
+          }
         }
       },
       false
@@ -78,12 +92,14 @@ class UserInput {
   }
 
   validateName(name) {
-    console.log("lenght:", name.length);
+    if (name.length == 0) {
+      return "no name";
+    }
     if (name.length < 4) {
       return "short name";
     }
-    console.log(this.getLogArr());
-    const nameExist = this.getLogArr().some((player) => (player.name = name));
+
+    const nameExist = this.getLogArr().some((player) => player.name == name);
     if (nameExist) {
       return "name exist";
     }
