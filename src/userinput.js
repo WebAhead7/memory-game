@@ -3,6 +3,7 @@ class UserInput {
     this.makeList();
     this.listenToInput();
     this.listenToClearHistory();
+    this.listenToAudioButtom();
   }
 
   listenToClearHistory() {
@@ -58,14 +59,16 @@ class UserInput {
           input.classList.remove("danger");
           input.classList.add("good");
           alert.innerHTML = "Press enter to play!";
-        } else if (msg == "name exist") {
+        } else {
           input.classList.remove("good");
           input.classList.add("danger");
+        }
+        if (msg == "name exist") {
           alert.innerHTML = "Name exists !";
         } else if (msg == "short name") {
-          input.classList.remove("good");
-          input.classList.add("danger");
           alert.innerHTML = "Very short name";
+        } else if (msg == "very long name") {
+          alert.innerHTML = "Very long name";
         }
         alert.classList.remove("disaper");
       },
@@ -99,6 +102,10 @@ class UserInput {
       return "short name";
     }
 
+    if (name.length > 10) {
+      return "very long name";
+    }
+
     const nameExist = this.getLogArr().some((player) => player.name == name);
     if (nameExist) {
       return "name exist";
@@ -112,19 +119,22 @@ class UserInput {
     logArr[index] = { ...logArr[index], score };
     this.setLogArr(logArr);
   }
+
+  listenToAudioButtom() {
+    const button = document.getElementById("button");
+    const audio = document.getElementById("player");
+    audio.volume = 0.01;
+
+    button.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        button.innerHTML = "Pause";
+      } else {
+        audio.pause();
+        button.innerHTML = "Play";
+      }
+    });
+  }
 }
 
 const userInput = new UserInput();
-
-var button = document.getElementById("button");
-var audio = document.getElementById("player");
-
-button.addEventListener("click", function () {
-  if (audio.paused) {
-    audio.play();
-    button.innerHTML = "Pause";
-  } else {
-    audio.pause();
-    button.innerHTML = "Play";
-  }
-});
