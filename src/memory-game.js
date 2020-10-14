@@ -52,8 +52,6 @@ class MemoryGame {
     this.container.appendChild(box);
     box.style.marginTop = Movebokes() + "px";
     box.style.marginLeft = Movebokes() + "px";
-    //box.style.marginRight = Movebokes() + "px";
-    //box.style.marginBottom = Movebokes() + "px";
   }
 
   clearBoxes() {
@@ -127,7 +125,7 @@ class MemoryGame {
       if (counter > 0) {
         counterElem.innerText = counter - 1;
       }
-      if (this.disappeared == false && counter == 0) {
+      if (this.disappeared == false && counter - 1 == 0) {
         this.disappeared = true;
         this.container.childNodes.forEach((elem) => {
           elem.style.color = "rgb(55, 187, 169)";
