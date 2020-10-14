@@ -1,47 +1,56 @@
-// the game starts when the player click the first square:
-// function startPlaying() {
-var stylesh = document.querySelector(".container");
-var flag = 1;
-var level = 0;
-
-var count = 1;
-var start = [
-  [1, 2, 3, 4], // level 0
-  [1, 2, 3, 4, 5, 6], // level 1
-  [1, 2, 3, 4, 5, 6, 7, 8], // level 2
-  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // level 3
-];
-
-var mixed = shuffle(start[level]);
-
-mixed.forEach((value) => {
-  const div1 = document.createElement("div");
-  const element = document.createElement("h1");
-
-  element.textContent = value;
-  div1.appendChild(element);
-  stylesh.appendChild(div1);
-  element.classList.add("sq-style");
-  element.addEventListener("click", function (event) {
-    if (element.textContent == count) {
-      event.target.classList.add("ifright");
-      count++;
-    } else {
-      event.target.classList.add("ifwrong");
-      // flage = 0;
-    }
-  });
-});
-
-function shuffle(arra1) {
-  var ctr = arra1.length;
-  var temp, index;
-  while (ctr > 0) {
-    index = Math.floor(Math.random() * ctr);
-    ctr--;
-    temp = arra1[ctr];
-    arra1[ctr] = arra1[index];
-    arra1[index] = temp;
+class MemoryGame {
+  constructor() {
+    this.count = 1;
+    this.container = document.querySelector(".container");
+    this.counter = document.querySelector(".counter");
   }
-  return arra1;
+  start() {
+    this.createBoxes();
+    this.startCounter();
+  }
+  createShuffledArray(level) {
+    return Array.from({ length: level }, (_, index) => index + 1).sort(() => {
+      return Math.random() - 0.5;
+    });
+  }
+  createBox(number) {
+    const box = document.createElement("div");
+    box.innerText = number;
+    box.classList.add("box");
+    this.listenToBoxClick(box);
+    this.container.appendChild(box);
+  }
+  createBoxes() {
+    this.createShuffledArray(4).forEach((number) => {
+      this.createBox(number);
+    });
+  }
+  listenToBoxClick(box) {
+    box.addEventListener("click", function (e) {
+      console.log(this.count);
+      if (Number(e.target.innerText) == this.count) {
+        // e5tfe
+        e.target.classList.add("ifright");
+        e.target.style.color = "rgb(55, 187, 169)";
+        this.count++;
+      } else {
+        e.target.style.background = "red";
+      }
+    });
+  }
+  startCounter() {
+    setInterval(() => {
+      const counter = this.counter;
+      if (Number(counter.innerText) > 0)
+        counter.innerText = Number(counter.innerText) - 1;
+      if (Number(counter.innerText) == 0) {
+        this.container.childNodes.forEach((elem) => {
+          elem.style.color = "rgb(55, 187, 169)";
+        });
+      }
+    }, 1000);
+  }
 }
+
+const memoryGame = new MemoryGame();
+memoryGame.start();

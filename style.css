@@ -3,6 +3,13 @@
   margin: 0;
 }
 
+.counter {
+  margin: 10px auto;
+  border: solid 3px;
+  width: 50px;
+  padding: 30px;
+}
+
 .container {
   width: 60%;
   height: 60%;
@@ -17,7 +24,7 @@
   border: 2px solid black;
 }
 
-.sq-style {
+.box {
   width: 30px;
   height: 30px;
   background-color: rgb(55, 187, 169);
@@ -33,7 +40,7 @@
 }
 
 .ifright {
-  background-color: rgb(89, 248, 129);
+  background: none;
 }
 
 .ifwrong {
