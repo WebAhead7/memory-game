@@ -11,6 +11,7 @@ for(let i=0; i<(3+jump) ; i++)
       //  newsq.textContent = 0;
        newsq.style.margin= "5px";
        sqarray.push(newsq);
+       
       // there is somthing missing
        newsq.addEventListener("click", function()
        {
