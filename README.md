@@ -52,7 +52,7 @@ Your browser does not support the video tag.
 
 ### \* Nizar Halloun
 
-### \* Shoog Ka
+### \* Shoog Kabiya
 
 ### \* Muhammed Khamaise
 
