@@ -1,36 +1,28 @@
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="/style.css" />
-      <title>Document</title>
-    </head>
-    <body>
-      
-      <img class="background">
-      <div class="info">You have 3 seconds to memorize the Boxes in order!<br>When the time is out, click the boxes by the order.<br><strong>GO!</strong> </div>
-      <div class="setCounter">
-      <div class="counter"></div>
-      <div>
-      <div class="menue">
-        <button class="restart">restart</button>
-        <button class="main">main</button>
-        
-      </div>
-      
-      <div class="score">
-        current
-        <span class="currentScore">0</span>
-        max
-        <span class="maxScore">0</span>
-        
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Train memory game</h1>
+      <input type="text" placeholder="Enter your name" />
+      <h2 class="alert disaper">wrong</h2>
+      <button class="clear-history">Clear History</button>
+      <div id="button_border">
+        <button id="button">Pause</button>
+        <audio loop autoplay id="player">
+          <source
+            src="https://www.mboxdrive.com/Pokemon.mp3"
+            type="audio/mpeg"
+          />
+        </audio>
       </div>
     </div>
-    </div>
-      <div class="container"></div>
 
-      
-    </body>
-    <script src="/sheet.js"></script>
-  </html>
+    <script src="./index.js"></script>
+  </body>
+</html>

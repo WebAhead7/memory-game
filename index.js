@@ -85,7 +85,7 @@ class UserInput {
             logArr.push({ name: name, score: 0 });
             this.setLogArr(logArr);
             window.localStorage.setItem("currentPlayer", name);
-            window.location.href = "../index.html";
+            window.location.href = "src/memory-game.html";
             input.value = "";
           } else {
           }

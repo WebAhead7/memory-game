@@ -32,7 +32,7 @@ class MemoryGame {
     mainElem.addEventListener("click", () => {
       console.log("hey");
       this.updateCurrentPlayer();
-      window.location.href = "src/userinput.html";
+      window.location.href = "../index.html";
     });
   }
 
