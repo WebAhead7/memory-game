@@ -141,10 +141,6 @@ class MemoryGame {
     }, SECOND);
   }
 }
-// getting random numbers to change places of the boxes
-function Movebokes() {
-  return Math.floor(Math.random() * 50) + 30;
-}
 
 const memoryGame = new MemoryGame();
 memoryGame.start();
