@@ -51,7 +51,10 @@ class UserInput {
     );
   }
 
-  validateName() {}
+  validateName(name) {
+    const nameExist = this.getLogArr().some((player) => (player.name = name));
+    return !nameExist;
+  }
 
   updatePlayerScore(score) {
     const logArr = this.getLogArr();
