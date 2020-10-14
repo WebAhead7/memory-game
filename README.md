@@ -36,7 +36,7 @@ Your browser does not support the video tag.
 
 #### \* If you get all boxes by order, don't stop! go to the next level.
 
-#### \*
+#### \* Chalenge youeself to get the highest SCORE!!
 
 # \* Play With us
 
