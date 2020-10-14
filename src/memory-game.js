@@ -1,11 +1,15 @@
+const INITLEVEL = 2; // Number of boxes in first level.
+const TIMER = 3; // Timer start with this number and go down till zero.
+const SECOND = 1000;
+
 class MemoryGame {
   constructor() {
     this.disappeared = false;
-    this.timer = 3;
-    this.currentLevel = 2;
+    this.timer = TIMER;
+    this.currentLevel = INITLEVEL;
     this.count = 1;
-    this.container = document.querySelector(".container");
-    this.counter = document.querySelector(".counter");
+    this.containerElem = document.querySelector(".container");
+    this.counterElem = document.querySelector(".counter");
     this.currentScoreElem = document.querySelector(".currentScore");
     this.maxScoreElem = document.querySelector(".maxScore");
     this.linkMenueButtoms();
@@ -37,7 +41,7 @@ class MemoryGame {
   }
 
   setCounter(second) {
-    this.counter.innerText = second;
+    this.counterElem.innerText = second;
   }
   createShuffledArray(level) {
     return Array.from({ length: level }, (_, index) => index + 1).sort(() => {
@@ -48,15 +52,19 @@ class MemoryGame {
     const box = document.createElement("div");
     box.innerText = number;
     box.classList.add("box");
+    box.style.marginTop = this.getRandomMargin();
+    box.style.marginLeft = this.getRandomMargin();
     this.listenToBoxClick(box);
-    this.container.appendChild(box);
-    box.style.marginTop = Movebokes() + "px";
-    box.style.marginLeft = Movebokes() + "px";
+    this.containerElem.appendChild(box);
+  }
+
+  getRandomMargin() {
+    return Math.floor(Math.random() * 50) + 30 + "px";
   }
 
   clearBoxes() {
-    while (this.container.firstChild) {
-      this.container.removeChild(this.container.firstChild);
+    while (this.containerElem.firstChild) {
+      this.containerElem.removeChild(this.containerElem.firstChild);
     }
   }
   createBoxes(level) {
@@ -91,12 +99,11 @@ class MemoryGame {
             this.setMaxScore(this.getCurrentScore());
           }
           this.currentLevel++;
-
           this.start();
         }
       } else {
         this.setCurrentScore(0);
-        this.currentLevel = 2;
+        this.currentLevel = INITLEVEL;
         this.start();
       }
     });
@@ -120,25 +127,24 @@ class MemoryGame {
   startCounter() {
     clearInterval(this.timeEnterval);
     this.timeEnterval = setInterval(() => {
-      const counterElem = this.counter;
+      const counterElem = this.counterElem;
       const counter = Number(counterElem.innerText);
       if (counter > 0) {
         counterElem.innerText = counter - 1;
       }
       if (this.disappeared == false && counter - 1 == 0) {
         this.disappeared = true;
-        this.container.childNodes.forEach((elem) => {
+        this.containerElem.childNodes.forEach((elem) => {
           elem.style.color = "rgb(55, 187, 169)";
         });
       }
-    }, 1000);
+    }, SECOND);
   }
 }
-
-const memoryGame = new MemoryGame();
-memoryGame.start();
-
 // getting random numbers to change places of the boxes
 function Movebokes() {
   return Math.floor(Math.random() * 50) + 30;
 }
+
+const memoryGame = new MemoryGame();
+memoryGame.start();
