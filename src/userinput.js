@@ -2,6 +2,14 @@ class UserInput {
   constructor() {
     this.makeList();
     this.listenToInput();
+    this.listenToClearHistory();
+  }
+
+  listenToClearHistory() {
+    document.querySelector(".clear-history").addEventListener("click", () => {
+      this.clearGameHistory();
+      window.location.reload();
+    });
   }
   clearGameHistory() {
     localStorage.clear();
@@ -37,6 +45,22 @@ class UserInput {
   listenToInput() {
     const input = document.querySelector("input");
     input.addEventListener(
+      "change",
+      (e) => {
+        console.log(e.target.value);
+        const msg = this.validateName(e.target.value);
+        console.log(msg);
+        if (msg === "good") {
+          input.classList.remove("danger");
+          input.classList.add("good");
+        } else {
+          input.classList.remove("good");
+          input.classList.add("danger");
+        }
+      },
+      false
+    );
+    input.addEventListener(
       "keypress",
       (e) => {
         if (e.key === "Enter") {
@@ -45,6 +69,8 @@ class UserInput {
           const logArr = this.getLogArr();
           logArr.push({ name: name, score: 4 });
           this.setLogArr(logArr);
+          window.location.href = "../index.html";
+          input.value = "";
         }
       },
       false
@@ -52,8 +78,16 @@ class UserInput {
   }
 
   validateName(name) {
+    console.log("lenght:", name.length);
+    if (name.length < 4) {
+      return "short name";
+    }
+    console.log(this.getLogArr());
     const nameExist = this.getLogArr().some((player) => (player.name = name));
-    return !nameExist;
+    if (nameExist) {
+      return "name exist";
+    }
+    return "good";
   }
 
   updatePlayerScore(score) {
@@ -66,12 +100,11 @@ class UserInput {
 
 const userInput = new UserInput();
 
-
 var button = document.getElementById("button");
 var audio = document.getElementById("player");
 
-button.addEventListener("click", function(){
-  if(audio.paused){
+button.addEventListener("click", function () {
+  if (audio.paused) {
     audio.play();
     button.innerHTML = "Pause";
   } else {
