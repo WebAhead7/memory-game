@@ -50,10 +50,10 @@ class MemoryGame {
     box.classList.add("box");
     this.listenToBoxClick(box);
     this.container.appendChild(box);
-    box.style.top = Movebokes() + "px";
-    box.style.left = Movebokes() + "px";
-    box.style.marginRight = Movebokes() + "px";
-    box.style.marginBottom = Movebokes() + "px";
+    box.style.marginTop = Movebokes() + "px";
+    box.style.marginLeft = Movebokes() + "px";
+    //box.style.marginRight = Movebokes() + "px";
+    //box.style.marginBottom = Movebokes() + "px";
   }
 
   clearBoxes() {
@@ -142,5 +142,5 @@ memoryGame.start();
 
 // getting random numbers to change places of the boxes
 function Movebokes() {
-  return Math.floor(Math.random() * 200) + 30;
+  return Math.floor(Math.random() * 50) + 30;
 }

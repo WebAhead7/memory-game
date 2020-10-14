@@ -1,27 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="info">You have 3 seconds to memorizes the Boxes in order!</div>
-
-    <div class="menue">
-      <button class="restart">restart</button>
-      <button class="main">main</button>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/style.css" />
+      <title>Document</title>
+    </head>
+    <body>
+      
+      <img class="background">
+      <div class="info">You have 3 seconds to memorize the Boxes in order!<br>When the time is out, click the boxes by the order.<br><strong>GO!</strong> </div>
+      <div class="setCounter">
+      <div class="counter"></div>
+      <div>
+      <div class="menue">
+        <button class="restart">restart</button>
+        <button class="main">main</button>
+        
+      </div>
+      
+      <div class="score">
+        current
+        <span class="currentScore">0</span>
+        max
+        <span class="maxScore">0</span>
+        
+      </div>
     </div>
-    <div class="score">
-      current
-      <span class="currentScore">0</span>
-      max
-      <span class="maxScore">0</span>
     </div>
+      <div class="container"></div>
 
-    <div class="container"></div>
-    <div class="counter"></div>
-  </body>
-  <script src="/sheet.js"></script>
-</html>
+      
+    </body>
+    <script src="/sheet.js"></script>
+  </html>
