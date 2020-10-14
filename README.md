@@ -8,11 +8,9 @@
   <source src="movie.mp4" type="video/mp4">
   <source src="movie.ogg" type="video/ogg">
 Your browser does not support the video tag.
-</video> -->
 
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/cPiDHXtM0VA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+"https://www.youtube.com/embed/cPiDHXtM0VA"  
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cPiDHXtM0VA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### What do think now? are you willing to challenge yourself?
 
