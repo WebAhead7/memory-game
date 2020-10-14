@@ -1,13 +1,25 @@
 class MemoryGame {
   constructor() {
     this.disappeared = false;
+    this.timer = 3;
+    this.currentLevel = 2;
     this.count = 1;
     this.container = document.querySelector(".container");
     this.counter = document.querySelector(".counter");
   }
   start() {
-    this.createBoxes();
+    const level = this.currentLevel;
+    this.timeEnterval;
+    this.disappeared = false;
+    this.count = 1;
+    this.clearBoxes();
+    this.createBoxes(level);
+    this.setCounter(3);
     this.startCounter();
+  }
+
+  setCounter(second) {
+    this.counter.innerText = second;
   }
   createShuffledArray(level) {
     return Array.from({ length: level }, (_, index) => index + 1).sort(() => {
@@ -21,29 +33,40 @@ class MemoryGame {
     this.listenToBoxClick(box);
     this.container.appendChild(box);
   }
-  createBoxes() {
-    this.createShuffledArray(4).forEach((number) => {
+
+  clearBoxes() {
+    while (this.container.firstChild) {
+      this.container.removeChild(this.container.firstChild);
+    }
+  }
+  createBoxes(level) {
+    this.createShuffledArray(level).forEach((number) => {
       this.createBox(number);
     });
   }
   listenToBoxClick(box) {
     box.addEventListener("click", (e) => {
       if (this.disappeared && Number(e.target.innerText) == this.count) {
-        console.log(this.count);
         e.target.classList.add("disappear");
         e.target.style.color = "#f3f3f3";
         this.count++;
+        if (this.currentLevel == this.count - 1) {
+          this.currentLevel++;
+          this.start();
+        }
       } else {
       }
     });
   }
   startCounter() {
-    setInterval(() => {
-      const counter = this.counter;
-      if (Number(counter.innerText) > 0) {
-        counter.innerText = Number(counter.innerText) - 1;
+    clearInterval(this.timeEnterval);
+    this.timeEnterval = setInterval(() => {
+      const counterElem = this.counter;
+      const counter = Number(counterElem.innerText);
+      if (counter > 0) {
+        counterElem.innerText = counter - 1;
       }
-      if (this.disappeared == false && Number(counter.innerText) == 0) {
+      if (this.disappeared == false && counter == 0) {
         this.disappeared = true;
         this.container.childNodes.forEach((elem) => {
           elem.style.color = "rgb(55, 187, 169)";
