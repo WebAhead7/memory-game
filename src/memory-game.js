@@ -4,7 +4,7 @@ const SECOND = 1000;
 
 class MemoryGame {
   constructor() {
-    this.disappeared = false;
+    this.boxesDisappeared = false;
     this.timer = TIMER;
     this.currentLevel = INITLEVEL;
     this.count = 1;
@@ -17,7 +17,7 @@ class MemoryGame {
   start() {
     const level = this.currentLevel;
     this.timeEnterval;
-    this.disappeared = false;
+    this.boxesDisappeared = false;
     this.count = 1;
     this.clearBoxes();
     this.createBoxes(level);
@@ -87,9 +87,12 @@ class MemoryGame {
   }
   listenToBoxClick(box) {
     box.addEventListener("click", (e) => {
-      if (!this.disappeared) {
+      if (!this.boxesDisappeared) {
         return;
-      } else if (this.disappeared && Number(e.target.innerText) == this.count) {
+      } else if (
+        this.boxesDisappeared &&
+        Number(e.target.innerText) == this.count
+      ) {
         e.target.classList.add("disappear");
         e.target.style.color = "#f3f3f3";
         this.count++;
@@ -132,8 +135,8 @@ class MemoryGame {
       if (counter > 0) {
         counterElem.innerText = counter - 1;
       }
-      if (this.disappeared == false && counter - 1 == 0) {
-        this.disappeared = true;
+      if (this.boxesDisappeared == false && counter - 1 == 0) {
+        this.boxesDisappeared = true;
         this.containerElem.childNodes.forEach((elem) => {
           elem.style.color = "rgb(55, 187, 169)";
         });
