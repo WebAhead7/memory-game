@@ -1,5 +1,6 @@
 class MemoryGame {
   constructor() {
+    this.disappeared = false;
     this.count = 1;
     this.container = document.querySelector(".container");
     this.counter = document.querySelector(".counter");
@@ -26,24 +27,24 @@ class MemoryGame {
     });
   }
   listenToBoxClick(box) {
-    box.addEventListener("click", function (e) {
-      console.log(this.count);
-      if (Number(e.target.innerText) == this.count) {
-        // e5tfe
-        e.target.classList.add("ifright");
-        e.target.style.color = "rgb(55, 187, 169)";
+    box.addEventListener("click", (e) => {
+      if (this.disappeared && Number(e.target.innerText) == this.count) {
+        console.log(this.count);
+        e.target.classList.add("disappear");
+        e.target.style.color = "#f3f3f3";
         this.count++;
       } else {
-        e.target.style.background = "red";
       }
     });
   }
   startCounter() {
     setInterval(() => {
       const counter = this.counter;
-      if (Number(counter.innerText) > 0)
+      if (Number(counter.innerText) > 0) {
         counter.innerText = Number(counter.innerText) - 1;
-      if (Number(counter.innerText) == 0) {
+      }
+      if (this.disappeared == false && Number(counter.innerText) == 0) {
+        this.disappeared = true;
         this.container.childNodes.forEach((elem) => {
           elem.style.color = "rgb(55, 187, 169)";
         });
