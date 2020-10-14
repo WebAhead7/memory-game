@@ -56,3 +56,27 @@
   background-color: #f3f3f3;
   color: #f3f3f3;
 }
+
+.menue {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.restart,
+.main {
+  margin: 20px;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+}
+
+.maxScore,
+.currentScore {
+  border: solid 2px;
+  margin: 3px;
+  border-radius: 5px;
+  padding: 10px;
+}

@@ -82,8 +82,9 @@ class UserInput {
             const name = input.value;
             this.player = name;
             const logArr = this.getLogArr();
-            logArr.push({ name: name, score: 4 });
+            logArr.push({ name: name, score: 0 });
             this.setLogArr(logArr);
+            window.localStorage.setItem("currentPlayer", name);
             window.location.href = "../index.html";
             input.value = "";
           } else {
