@@ -35,36 +35,36 @@ mixed.forEach((value) => {
 
 // if(flag ==1)
 // {
-let flag =1; jump =0, stag =1;
-const sqarray =[];
-for(let i=0; i<(3+jump) ; i++)
-{
-     var stylesh=document.querySelector('.container');
-     var newsq = document.createElement("div");
-       newsq.classList.add('sq-style');
-       newsq.textContent = i+1;
-       newsq.style.margin= "5px";
-       sqarray.push(newsq);
+//let flag =1; jump =0, stag =1;
+//const sqarray =[];
+//for(let i=0; i<(3+jump) ; i++)
+//{
+     //var stylesh=document.querySelector('.container');
+    // var newsq = document.createElement("div");
+     //  newsq.classList.add('sq-style');
+      // newsq.textContent = i+1;
+       //newsq.style.margin= "5px";
+      // sqarray.push(newsq);
        
       // there is somthing missing
-       newsq.addEventListener("click", function(event)
-       {
-         if(flag==1)
-         {
-           event.target.classList.add('ifright');
-         }
-         else
-         {
-           event.target.classList.add('ifwrong');
-         }
-       });
+     //  newsq.addEventListener("click", function(event)
+      // {
+        // if(flag==1)
+        // {
+        //   event.target.classList.add('ifright');
+        // }
+         //else
+         //{
+          // event.target.classList.add('ifwrong');
+        // }
+      // });
     
-  newsq.style.width = "20px";
-  newsq.style.height = "20px";
+  //newsq.style.width = "20px";
+  //newsq.style.height = "20px";
 
-  stylesh.appendChild(newsq);
+  //stylesh.appendChild(newsq);
  
-}
+//}
 //   level++;
 // }
 
