@@ -1,9 +1,11 @@
 const INITLEVEL = 2; // Number of boxes in first level.
 const TIMER = 3; // Timer start with this number and go down till zero.
-const SECOND = 1000;
+const SECOND = 1000; // ms
+const INITSCORE = 0;
 
 class MemoryGame {
   constructor() {
+    this.timeEnterval;
     this.boxesDisappeared = false;
     this.timer = TIMER;
     this.currentLevel = INITLEVEL;
@@ -15,25 +17,21 @@ class MemoryGame {
     this.linkMenueButtoms();
   }
   start() {
-    const level = this.currentLevel;
-    this.timeEnterval;
     this.boxesDisappeared = false;
     this.count = 1;
     this.clearBoxes();
-    this.createBoxes(level);
-    this.setCounter(3);
+    this.createBoxes(this.currentLevel);
+    this.setCounter(TIMER);
     this.startCounter();
   }
 
   linkMenueButtoms() {
-    const restartElem = document.querySelector(".restart");
-    const mainElem = document.querySelector(".main");
-    restartElem.addEventListener("click", () => {
-      this.currentLevel = 2;
-      this.setCurrentScore(0);
+    document.querySelector(".restart").addEventListener("click", () => {
+      this.currentLevel = INITLEVEL;
+      this.setCurrentScore(INITSCORE);
       this.start();
     });
-    mainElem.addEventListener("click", () => {
+    document.querySelector(".main").addEventListener("click", () => {
       console.log("hey");
       this.updateCurrentPlayer();
       window.location.href = "../index.html";
@@ -105,7 +103,7 @@ class MemoryGame {
           this.start();
         }
       } else {
-        this.setCurrentScore(0);
+        this.setCurrentScore(INITSCORE);
         this.currentLevel = INITLEVEL;
         this.start();
       }
