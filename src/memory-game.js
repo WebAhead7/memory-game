@@ -5,9 +5,8 @@ const INITSCORE = 0;
 
 class MemoryGame {
   constructor() {
-    this.timeEnterval;
+    this.timeEnterval = undefined;
     this.boxesDisappeared = false;
-    this.timer = TIMER;
     this.currentLevel = INITLEVEL;
     this.count = 1;
     this.containerElem = document.querySelector(".container");
