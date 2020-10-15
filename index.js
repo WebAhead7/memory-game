@@ -15,7 +15,6 @@ class UserInput {
   clearGameHistory() {
     localStorage.clear();
   }
-
   getLogArr() {
     return JSON.parse(window.localStorage.getItem("logArr"));
   }
@@ -112,13 +111,6 @@ class UserInput {
       return "name exist";
     }
     return "good";
-  }
-
-  updatePlayerScore(score) {
-    const logArr = this.getLogArr();
-    const index = logArr.indexOf({ name: this.name, score: 0 });
-    logArr[index] = { ...logArr[index], score };
-    this.setLogArr(logArr);
   }
 
   listenToAudioButtom() {
